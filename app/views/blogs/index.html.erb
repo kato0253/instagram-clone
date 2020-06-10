@@ -1,0 +1,18 @@
+<h1>一覧</h1>
+<table>
+  <tr >
+    <th>投稿者</th>
+    <th>内容</th>
+    <th>画像</th>
+  </tr>
+<% @blogs.each do |blog| %>
+  <tr>
+    <td><%= blog.user.name %></td>
+    <td><%= blog.content %></td>
+    <td><%= image_tag(blog.image.url) %></td>
+    <td><%= link_to '編集', edit_blog_path(blog.id)%></td>
+    <td><%= link_to '削除', blog_path(blog.id), method: :delete %></td>
+  </tr>
+<% end %>
+</table><br>
+<%= link_to '投稿', new_blog_path %>
