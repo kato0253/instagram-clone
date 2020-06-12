@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  root 'sessions#new'
+  root 'users#new'
   get 'sessions/new'
-  root 'blogs#new'
+  # post 'users/:id/edit', to: 'users#edit'
+
   resources :blogs do
     collection do
       post :confirm

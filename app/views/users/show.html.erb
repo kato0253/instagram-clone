@@ -3,7 +3,7 @@
     <div class="user">
       <h2><%= @user.name %></h2>
       <p><%= @user.email %></p>
-      <!-- ユーザー編集ページへのリンクを作成してください -->
+      <p><%= image_tag @user.image.url %><p>
       <%= link_to("編集", "/users/#{@user.id}/edit") %>
     </div>
   </div>
