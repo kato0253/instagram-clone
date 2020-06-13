@@ -20,7 +20,6 @@ class BlogsController < ApplicationController
   end
 
   def index
-
     @blogs = Blog.all
 
 
@@ -37,9 +36,6 @@ class BlogsController < ApplicationController
     # end
   end
 
-  def show
-  end
-
   def destroy
 
     @blog.destroy
@@ -47,8 +43,7 @@ class BlogsController < ApplicationController
 
   end
 
-  def edit
-  　　
+  def edit　
   end
 
   def update
@@ -57,6 +52,11 @@ class BlogsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def show
+    @blog = Blog.find(params[:id])
+    @favorite = current_user.favorites.find_by(blog_id:1)
   end
 
 
