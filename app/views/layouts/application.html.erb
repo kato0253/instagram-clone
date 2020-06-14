@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App</title>
+    <title>instagram_clone</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,14 +10,14 @@
   </head>
 
   <body>
-    <p id = "a">Facebook</P>
+    <p id = "a">instagram_clone</P>
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
     <% if logged_in? %>
       <%= link_to(@current_user.name, "/users/#{@current_user.id}") %>
       <%= link_to "ユーザー一覧", users_path(current_user.id) %>
-      <%= link_to "新規投稿", new_blog_path(current_user.id) %>
+      <%= link_to "新規投稿", new_contact_path(current_user.id) %>
       <%= link_to "投稿一覧", blogs_path(current_user.id) %>
       <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
     <% else %>

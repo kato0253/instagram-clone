@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
 
   before_action :set_blog, only: [:edit, :update, :destroy]
+  before_action :authenticate_user
 
   def new
     # @blog = current_user.blogs.build

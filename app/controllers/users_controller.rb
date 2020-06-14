@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :ensure_correct_user, {only: [:edit, :update]}
+  before_action :authenticate_user, {only: [:index, :show, :edit, :update]}
 
   def index
     @users = User.all
@@ -42,7 +43,6 @@ class UsersController < ApplicationController
   end
 
   def ensure_correct_user
-    binding.pry
       @user = User.find_by(params[:id])
       if @user != params[:id].to_i
         flash[:notice] = "権限がありません"
