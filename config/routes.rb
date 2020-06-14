@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root 'users#new'
   get 'sessions/new'
   # post 'users/:id/edit', to: 'users#edit'
 
