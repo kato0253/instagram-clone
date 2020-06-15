@@ -2,6 +2,7 @@ class BlogsController < ApplicationController
 
   before_action :set_blog, only: [:edit, :update, :destroy]
   before_action :authenticate_user
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
     # @blog = current_user.blogs.build
@@ -73,5 +74,14 @@ class BlogsController < ApplicationController
   def set_blog
     @blog = Blog.find(params[:id])
   end
+
+def correct_user
+    @blog = Blog.find(params[:id])
+    if current_user != @user
+    redirect_to root_path
+    else
+    end
+end
+
 
 end
