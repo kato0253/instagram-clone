@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true ,length: { minimum: 6 },on: :edit
   has_many :blogs
+  has_many :contacts
   has_many :favorites, dependent: :destroy
   mount_uploader :image, ImageUploader
 end

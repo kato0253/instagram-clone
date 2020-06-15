@@ -25,12 +25,20 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
+    @contact.user_id = current_user.id
+    # @blog = current_user.blogs.build(blog_params)
     if @contact.save
       ContactMailer.contact_mail(@contact).deliver  ##追記
       redirect_to contacts_path, notice: 'Contact was successfully created.'
     else
       render :new
     end
+  end
+
+  def confirm
+    @contact = Contact.new(contact_params)
+    @contact.user_id = current_user.id #現在ログインしているuserのidを、blogのuser_idカラムに挿入する
+    render :new if @contact.invalid?
   end
 
 
