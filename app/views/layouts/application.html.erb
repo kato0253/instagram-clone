@@ -15,9 +15,9 @@
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
     <% if logged_in? %>
-      <%= link_to "ユーザー一覧", users_path(current_user.id) %>
-      <%= link_to "新規投稿", blogs_path(current_user.id) %>
-      <%= link_to "投稿一覧", contacts_path(current_user.id) %>
+      <%= link_to "ユーザーindex", users_path(current_user.id) %>
+      <%= link_to "index", blogs_path(current_user.id) %>
+      <%= link_to "show", blog_path(current_user.id) %>
       <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
     <% else %>
       <%= link_to "Sign up", new_user_path %>

@@ -23,8 +23,6 @@ class BlogsController < ApplicationController
 
   def index
     @blogs = Blog.all
-
-
   end
 
   def confirm
@@ -58,7 +56,7 @@ class BlogsController < ApplicationController
 
   def show
     @blog = Blog.find(params[:id])
-    @favorite = current_user.favorites.find_by(blog_id:1)
+    @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
 
 
