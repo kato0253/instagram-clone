@@ -23,6 +23,8 @@ class BlogsController < ApplicationController
 
   def index
     @blogs = Blog.all
+    @blog = Blog.find_by(params[blog: :id])
+      # redirect_to(root_path) unless current_user?(@blog)
   end
 
   def confirm
@@ -55,7 +57,9 @@ class BlogsController < ApplicationController
   end
 
   def show
-    @blog = Blog.find(params[:id])
+    # @blog = Blog.find(params[:id])
+    @blog = Blog.find_by(params[blog: :id])
+    # @blog = Blog.find_by(id: params[:id])
     @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
 

@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user
     if @current_user == session[:user_id]
       flash[:notice] = "ログインが必要です"
-      redirect_to("/contacts/new")
+      redirect_to("/users/new")
     end
   end
 

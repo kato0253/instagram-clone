@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :ensure_correct_user, {only: [:edit, :update]}
+  # before_action :ensure_correct_user, {only: [:edit, :update]}
   before_action :authenticate_user, {only: [:index, :show, :edit, :update]}
 
   def index
@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      # redirect_to blogs_path
       redirect_to user_path(@user.id)
     else
       render :new
@@ -42,13 +43,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def ensure_correct_user
-      @user = User.find_by(params[:id])
-      if @user != params[:id].to_i
-        flash[:notice] = "権限がありません"
-        redirect_to("/posts/index")
-      end
-  end
+  # def ensure_correct_user
+  #     @user = User.find_by(params[:id])
+  #     # if @user != params[:id].to_i
+  #     if @user.id != session[:user_id]
+  #       flash[:notice] = "権限がありません"
+  #       redirect_to("/posts/index")
+  #     end
+  # end
 
   private
   def user_params

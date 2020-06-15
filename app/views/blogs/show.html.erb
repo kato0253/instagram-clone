@@ -3,8 +3,11 @@
   <strong>Image:</strong>
   <%= image_tag @blog.image.url %>
 </p>
-<%= link_to 'Edit', edit_blog_path(@blog) %> |
-<%= link_to 'Back', blogs_path %>
+<% if logged_in? && current_user.id == @blog.user_id %>
+  <%= link_to 'Edit', edit_blog_path(@blog) %> |
+<% else %>
+  <%= link_to 'Back', blogs_path %>
+<% end %>
 
 <% unless @blog.user_id == current_user.id %>
   <% if @favorite.present? %>
