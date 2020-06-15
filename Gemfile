@@ -22,6 +22,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry-byebug'
   gem 'letter_opener_web'
+  gem 'faker'
 end
 
 group :test do
