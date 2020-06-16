@@ -19,14 +19,19 @@ class BlogsController < ApplicationController
       else
       render :"new"
     end
-
   end
+
 
   def index
     @blogs = Blog.all
-    @blog = Blog.find_by(params[blog: :id])
-      # redirect_to(root_path) unless current_user?(@blog)
+    # @blog = Blog.find_by(params[blog: :id])
+    @favorites = current_user.favorites
+
+    # @blog = Blog.find_by(params[blog: :id])
+    # @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
+      # redirect_to(root_path) unless current_user?(@blog)
+
 
   def confirm
     # binding.irb
@@ -75,13 +80,12 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
   end
 
-def correct_user
+  def correct_user
     @blog = Blog.find(params[:id])
-    if current_user != @user
-    redirect_to root_path
-    else
+    if current_user != @blog.user
+    redirect_to blogs_path(@blog.id)
+    flash[:notice] = "権限がありません"
     end
-end
-
+  end
 
 end

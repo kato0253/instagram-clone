@@ -10,12 +10,17 @@
     <td><%= blog.user.name %></td>
     <td><%= blog.content %></td>
     <td><%= image_tag(blog.image.url) %></td>
-    <%# <% if logged_in? && current_user.id == @blog.user_id %> %>
     <td><%= link_to '編集', edit_blog_path(blog.id)%></td>
-    <%# <% else %> %>
     <td><%= link_to '削除', blog_path(blog.id), method: :delete %></td>
-    <%# <% end %> %>
+    <% unless blog.user_id == current_user.id %>
+      <% if @favorites.present? %>
+      <td><%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %></td>
+      <% else %>
+      <td><%= link_to 'お気に入りする', favorites_path(blog_id: blog.id), method: :post, class: 'btn btn-primary' %></td>
+      <% end %>
+    <% end %>
   </tr>
+
 <% end %>
-</table><br>
+</table>
 <%= link_to '投稿', new_blog_path %>
