@@ -25,7 +25,7 @@ class BlogsController < ApplicationController
   def index
     @blogs = Blog.all
     # @blog = Blog.find_by(params[blog: :id])
-    @favorites = current_user.favorites
+    # @favorites = current_user.favorites
 
     # @blog = Blog.find_by(params[blog: :id])
     # @favorite = current_user.favorites.find_by(blog_id: @blog.id)
@@ -45,7 +45,6 @@ class BlogsController < ApplicationController
   end
 
   def destroy
-
     @blog.destroy
     redirect_to blogs_path,notice:"投稿を削除しました！"
 
@@ -64,8 +63,9 @@ class BlogsController < ApplicationController
 
   def show
     # @blog = Blog.find(params[:id])
-    @blog = Blog.find_by(params[blog: :id])
-    # @blog = Blog.find_by(id: params[:id])
+    # @blog = Blog.find_by(params[blog: :id])
+    @blogs = Blog.all
+    @blog = Blog.find(params[:id])
     @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
 

@@ -1,7 +1,17 @@
-<p id="notice"><%= notice %></p>
+<p> <id="notice"><%= notice %></p>
+<h1>詳細一覧</h1>
 <p>
   <strong>Image:</strong>
   <%= image_tag @blog.image.url %>
+
+  <% unless @blog.user_id == current_user.id %>
+    <% if @favorite.present? %>
+      <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+    <% else %>
+      <%= link_to 'お気に入りする', favorites_path(blog_id: @blog.id), method: :post, class: 'btn btn-primary' %>
+    <% end %>
+  <% end %>
 </p>
-  <%= link_to 'Edit', edit_blog_path(@blog) %> |
-  <%= link_to 'Back', blogs_path %>
+  <%= link_to '編集', edit_blog_path(@blog) %> |
+  <%= link_to '戻る', blogs_path %>
+  <%= link_to '投稿', new_blog_path %>
