@@ -6,8 +6,24 @@ class BlogsController < ApplicationController
 
   def new
     # @blog = current_user.blogs.build
-    @blog = Blog.new
+    if params[:back]
+    @blog = current_user.blogs.build(blog_params)
+    else
+    @blog = current_user.blogs.build
+    end
   end
+
+  def confirm
+    # binding.irb
+    # if logged_in?
+    # @blog = Blog.new(blog_params)
+    @blog = current_user.blogs.build(blog_params)
+    # binding.irb
+    render :new if @blog.invalid?
+    # else
+    # end
+  end
+
 
   def create
 
@@ -24,26 +40,14 @@ class BlogsController < ApplicationController
 
   def index
     @blogs = Blog.all
-
+  end
     # @blog = Blog.find_by(params[blog: :id])
     # @favorites = current_user.favorites
 
     # @blog = Blog.find_by(params[blog: :id])
     # @favorite = current_user.favorites.find_by(blog_id: @blog.id)
-  end
+
       # redirect_to(root_path) unless current_user?(@blog)
-
-
-  def confirm
-    # binding.irb
-    # if logged_in?
-    # @blog = Blog.new(blog_params)
-    @blog = current_user.blogs.build(blog_params)
-    # binding.irb
-    render :new if @blog.invalid?
-    # else
-    # end
-  end
 
   def destroy
     @blog.destroy
@@ -69,6 +73,7 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
+
 
 
 

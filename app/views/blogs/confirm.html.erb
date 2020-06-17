@@ -1,5 +1,5 @@
 <h3>確認</h3>
-<%= form_with(model: @blog,local: true) do |form| %>
+ <%=form_with(model: @blog,local: true) do |form| %>
   <%= form.hidden_field :content %>
   <p>本文:<%= @blog.content %></p>
   <%= form.hidden_field :image %>
@@ -8,4 +8,7 @@
   <%= form.hidden_field :user %>
   <p>投稿者:<%= @blog.user.name %></p>
   <%= form.submit  "登録" %>
-<% end %>
+  <% end %>
+  <%= form_with(model: @blog, url: new_blog_path, local: true, method: 'get') do |form| %>
+  <%= form.submit "戻る", name: 'back' %>
+  <% end %>

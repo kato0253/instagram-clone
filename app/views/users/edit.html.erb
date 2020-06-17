@@ -1,8 +1,9 @@
-<h1>edit</h1>
+<h1>ユーザー画像変更</h1>
 
-
+<div class="gazou" style="text-align:-webkit-center;">
 <%= form_with(model: @user, local: true) do |f| %>
   <%= f.label :image %>
   <%= f.file_field :image %>
-  <%= f.submit "edit" %>
+  <%= f.submit "変更" %>
 <% end %>
+</div>

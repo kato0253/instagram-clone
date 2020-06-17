@@ -23,6 +23,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    flash[:success] = 'ユーザー情報を編集しました。'
   end
 
   def edit
@@ -48,14 +49,21 @@ class UsersController < ApplicationController
     @favorite = Favorite.where(user_id: current_user.id)
   end
 
-  # def ensure_correct_user
-  #     @user = User.find_by(params[:id])
-  #     # if @user != params[:id].to_i
-  #     if @user.id != session[:user_id]
-  #       flash[:notice] = "権限がありません"
-  #       redirect_to("/posts/index")
-  #     end
-  # end
+  def ensure_correct_user
+      # @user = User.find_by(params[:id])
+      # if @user != params[:id].to_i
+
+      # if @user != session[:user_id]
+      #   flash[:notice] = "権限がありません"
+      #   redirect_to("/users/1/edit")
+      # end
+      @user = User.find(params[:id])
+      if @user.id != session[:user_id]
+      flash[:notice] = “アクセスする権限がありません。正しいユーザーでログインしてください”
+      # redirect_to root_url unless @user == current_user
+      redirect_to("/users/id/edit")
+      end
+  end
 
   private
   def user_params
