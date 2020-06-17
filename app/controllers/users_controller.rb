@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  # before_action :ensure_correct_user, {only: [:edit, :update]}
+  before_action :ensure_correct_user, {only: [:edit, :update]}
   before_action :authenticate_user, {only: [:index, :show, :edit, :update]}
 
   def index
     @users = User.all
+    @user = User.find(params[:id])
   end
 
   def new
@@ -41,6 +42,10 @@ class UsersController < ApplicationController
       flash.now[:danger] = 'ユーザー情報の編集に失敗しました。'
       render :edit
     end
+  end
+
+  def user_favorite
+    @favorite = Favorite.where(user_id: current_user.id)
   end
 
   # def ensure_correct_user

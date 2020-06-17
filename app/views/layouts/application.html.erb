@@ -15,12 +15,13 @@
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
     <% if logged_in? %>
-      <%= link_to "index", blogs_path(current_user.id) %>
-      <%= link_to "show", blog_path(current_user.id) %>
-      <%= link_to "logout", session_path(current_user.id), method: :delete %>
+      <%= link_to '投稿', new_blog_path %>
+      <%= link_to "投稿一覧", blogs_path %>
+      <%= link_to "お気に入り一覧", users_user_favorite_path %>
+      <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
     <% else %>
-      <%= link_to "Sign up", new_user_path %>
-      <%= link_to "Login", new_session_path %>
+      <%= link_to "ユーザー新規登録", new_user_path %>
+      <%= link_to "ログイン", new_session_path %>
     <% end %>
     <%= yield %>
   </body>

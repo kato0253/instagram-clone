@@ -18,7 +18,9 @@
   <%= f.password_field :password %>
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
-  <%= f.label :image %>
+  <div class="image">
+  <%= f.label :ユーザー画像 %>
   <%= f.file_field :image %>
+  </div>
   <%= f.submit "Create my account" %>
 <% end %>

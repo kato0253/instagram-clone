@@ -24,6 +24,7 @@ class BlogsController < ApplicationController
 
   def index
     @blogs = Blog.all
+   
     # @blog = Blog.find_by(params[blog: :id])
     # @favorites = current_user.favorites
 

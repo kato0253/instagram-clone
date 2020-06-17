@@ -10,10 +10,11 @@
     <td><%= blog.user.name %></td>
     <td><%= blog.content %></td>
     <td><%= image_tag(blog.image.url) %></td>
+    <% if blog.user.id == session[:user_id] %>
     <td><%= link_to '編集', edit_blog_path(blog.id)%></td>
     <td><%= link_to '削除', blog_path(blog.id), method: :delete %></td>
     <td><%= link_to '詳細を確認する', blog_path(blog.id) %></td>
+    <%end%>
   </tr>
 <% end %>
 </table>
-<%= link_to '投稿', new_blog_path %>

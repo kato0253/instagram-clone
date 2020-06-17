@@ -1,8 +1,6 @@
 <p> <id="notice"><%= notice %></p>
 <h1>詳細一覧</h1>
 <p>
-  <strong>Image:</strong>
-  <%= image_tag @blog.image.url %>
 
   <% unless @blog.user_id == current_user.id %>
     <% if @favorite.present? %>
@@ -15,3 +13,4 @@
   <%= link_to '編集', edit_blog_path(@blog) %> |
   <%= link_to '戻る', blogs_path %>
   <%= link_to '投稿', new_blog_path %>
+  <%= link_to 'お気に入り一覧へ', users_user_favorite_path %>
