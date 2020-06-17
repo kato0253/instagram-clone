@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get  "users/user_favorite"  => "users#user_favorite"
   root 'sessions#new'
   get 'sessions/new'
+  post'sessions/new'
   # post 'users/:id/edit', to: 'users#edit'
 
   resources :blogs do
